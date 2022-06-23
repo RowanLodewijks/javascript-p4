@@ -3,7 +3,6 @@
   $obj = new Connection();
   $conn = $obj->connection();
   
-  // $query = " SELECT * FROM `score` ORDER BY score DESC LIMIT 5 ";
   $query = " SELECT player.name AS player, score.score AS score FROM player INNER JOIN score ON player.id = score.player_id ORDER BY score DESC LIMIT 5 ";
   $result = mysqli_query($conn, $query);
 ?>
@@ -21,16 +20,6 @@
 </head>
 
 <body>
-  <!-- <button id="end" onclick="end_game()">Einde van het spel</button> -->
-  <form action="" method="POST" id="form" onsubmit="return save_score()">
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" maxlength="3" required />
-    <br><br>
-    <input type="submit" name="continue" value="Ga verder">
-  </form>
-
-  <div id="highscores"></div>
-
   <div class="start-screen">Press Any Key To Start</div>
   <div id="timer"></div>
   <div class="end-screen"onclick="restart()">Game Ended<br><p>(Click To Restart)</p></div>
