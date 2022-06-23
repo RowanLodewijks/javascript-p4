@@ -6,7 +6,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
-  background-image: url("/assets/img/background.png");
+  background-image: url("../../assets/img/background.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -83,22 +83,22 @@ body {
 }
 
 #derp1 {
-  background-image: url("/assets/img/bluederp.png");
+  background-image: url("../../assets/img/bluederp.png");
   transition: all 2.5s;
 }
 
 #derp2 {
-  background-image: url("/assets/img/yellowderp.png");
+  background-image: url("../../assets/img/yellowderp.png");
   transition: all 1.5s;
 }
 
 #derp3 {
-  background-image: url("/assets/img/redderp.png");
+  background-image: url("../../assets/img/redderp.png");
   transition: all 1.1s;
 }
 
 #derp4 {
-  background-image: url("/assets/img/rainbowderp.png");
+  background-image: url("../../assets/img/rainbowderp.png");
   transition: all 1.1s;
   visibility: hidden;
 }

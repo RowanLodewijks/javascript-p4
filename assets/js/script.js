@@ -26,7 +26,17 @@ let textbox = document.querySelector(".start-screen");
 //   });
 // }
 
+let playername = "";
 
+window.addEventListener("load", () => {
+  let person = prompt("Please enter your name", "Must contain 3 characters");
+  playername = person;
+  document.querySelector(".name").innerHTML = person;
+  if (person == null || person == "Max 3 characters" || person.length !== 3) {
+    location.reload();
+  }
+  document.body.style.opacity = 1;
+});
 
 
 window.addEventListener("keydown", (e) => {
@@ -93,19 +103,25 @@ function spawnGolden() {
   }, 999);
 }
 
+let blocked = false
 function countdown() {
   countdown = function () {};
   if (seconds <= 60) { // I want it to say 1:00, not 60
     document.getElementById("timer").innerHTML = seconds;
   }
-  if (seconds > 0) { // so it doesn't go to -1
+  if (seconds > 55) { // so it doesn't go to -1
     seconds--;
   } else {
     clearInterval(timer);
     var div = document.querySelector(".end-screen");
     div.style.visibility = 'visible';
-    var audio = new Audio('/assets/img/gameover.mp3');
-    audio.play();
+    // var audio = new Audio('/assets/img/gameover.mp3');
+    // audio.play();
+    if(!blocked) {
+      gameover();
+      blocked = true
+    }
+    
   }
 }
 document.getElementById("textarea").onkeypress = function () {
@@ -114,6 +130,11 @@ document.getElementById("textarea").onkeypress = function () {
       countdown();
     }, 1000); // every second
   }
+}
+
+function gameover() {
+  fetch(`saveHighScore.php?player=${playername}&score=${score}`);
+  console.log("game over");
 }
 
 document.getElementById("timer").innerHTML = "1:00";
