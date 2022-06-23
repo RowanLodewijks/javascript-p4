@@ -35,6 +35,7 @@ body {
   transform: translate(-50%, -50%);
   visibility: hidden;
   z-index: 1;
+  text-align: center;
 }
 
 .score-screen {
@@ -52,7 +53,7 @@ body {
 
 .scoreboard {
   width:150px;
-  height:200px;
+  height:320px;
   background-color: rgba(123, 198, 255, 0.655);
   padding:10px;
   color:white;
@@ -121,4 +122,8 @@ form {
   padding: 50px;
   text-align: center;
   display: none;
+}
+
+.end-screen p {
+  font-size: medium;
 }

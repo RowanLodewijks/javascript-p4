@@ -1,3 +1,13 @@
+<?php
+  include "./db_conn.php";
+  $obj = new Connection();
+  $conn = $obj->connection();
+  
+  // $query = " SELECT * FROM `score` ORDER BY score DESC LIMIT 5 ";
+  $query = " SELECT player.name AS player, score.score AS score FROM player INNER JOIN score ON player.id = score.player_id ORDER BY score DESC LIMIT 5 ";
+  $result = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +33,7 @@
 
   <div class="start-screen">Press Any Key To Start</div>
   <div id="timer"></div>
-  <div class="end-screen">Game Ended</div>
+  <div class="end-screen"onclick="restart()">Game Ended<br><p>(Click To Restart)</p></div>
   <div class="score-screen">Your score:</div>
   <div id="derp1" onclick="hit(10,1)" class="derp"></div>
   <div id="derp2" onclick="hit(20,2)" class="derp"></div>
@@ -38,8 +48,17 @@
       blue derp = 10<br>
       yellow derp = 20<br>
       red derp = 50<br>
-      rainbow derp = 100<br>
-      <div class="name"></div>
+      rainbow derp = 100<br><br>
+      Player:
+      <div class="name"></div><br>
+      <div class="leaderboard">
+        <h4>Top Scores:</h4>
+        <?php
+            while ($row_users = mysqli_fetch_array($result)) {
+              echo "<li>" . ($row_users['player']) . ": " . ($row_users['score']) . "</li>";
+            }
+         ?>
+      </div>
     </div>
   </div>
 </body>
@@ -47,11 +66,9 @@
 </html>
 <!-- https://ihatetomatoes.net/create-custom-preloading-screen/ -->
 
-<!-- 1. De game heeft een duidelijk **begin** en een **einde**.
+<!--1. Highscore die kan worden opgeslagen en opgehaald en getoond d.m.v. een **database** of **datasource.**
 
-2. Highscore die kan worden opgeslagen en opgehaald en getoond d.m.v. een **database** of **datasource.**
-
-3. Er is gebruik gemaakt van **GIT** en er zijn regelmatig commits gedaan. -->
+2. Er is gebruik gemaakt van **GIT** en er zijn regelmatig commits gedaan. -->
 
 
 

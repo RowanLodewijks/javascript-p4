@@ -1,13 +1,21 @@
 <?php
 
-$sname = "localhost";
-$unmae = "root";
-$password = "";
-
-$db_name = "javascript-p4";
-
-$conn = mysqli_connect($sname, $unmae, $password, $db_name);
-
-if (!$conn) {
-    echo "Connection failed!";
+class Connection {
+    private $sname = "localhost";
+    private $unmae = "root";
+    private $password = "";
+    private $db_name = "javascript-p4";
+    public $conn;
+    public function __constructor()
+    {
+        $this->conn = "";
+    }
+    public function connection()
+    {
+        $this->conn = mysqli_connect($this->sname, $this->unmae, $this->password, $this->db_name);
+        if (!$this->conn) {
+            echo "Connection failed!";
+        }
+        return $this->conn;
+    }
 }

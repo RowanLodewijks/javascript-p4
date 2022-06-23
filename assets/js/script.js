@@ -4,28 +4,6 @@ var timer;
 function runFunction() {}
 let textbox = document.querySelector(".start-screen");
 
-
-
-
-// var eventList = ["keydown", "click"];
-// for (event of eventList) {
-//   document.addEventListener(event, function (e) {
-//     setInterval(moveDerps, 2000);
-//     setInterval(moveDerp2, 2430);
-//     setInterval(moveDerp3, 1000);
-//     setInterval(spawnGolden, 5000);
-//     setInterval(countdown, 1000);
-//     countdown();
-//     var audio = new Audio('/assets/img/music.mp3');
-//     audio.play();
-
-//     if (e.key) {
-//       textbox.style.display = "none";
-//       runFunction();
-//     }
-//   });
-// }
-
 let playername = "";
 
 window.addEventListener("load", () => {
@@ -106,10 +84,10 @@ function spawnGolden() {
 let blocked = false
 function countdown() {
   countdown = function () {};
-  if (seconds <= 60) { // I want it to say 1:00, not 60
+  if (seconds <= 60) {
     document.getElementById("timer").innerHTML = seconds;
   }
-  if (seconds > 55) { // so it doesn't go to -1
+  if (seconds > 0) {
     seconds--;
   } else {
     clearInterval(timer);
@@ -135,6 +113,12 @@ document.getElementById("textarea").onkeypress = function () {
 function gameover() {
   fetch(`saveHighScore.php?player=${playername}&score=${score}`);
   console.log("game over");
+}
+
+function restart() {
+    setTimeout(function(){
+    window.location.reload(1);
+  }, 100);
 }
 
 document.getElementById("timer").innerHTML = "1:00";
